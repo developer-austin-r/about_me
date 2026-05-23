@@ -32,32 +32,41 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/10 bg-[#08031d]/90 py-4 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-2xl"
-          : "bg-[#030014]/60 py-6 backdrop-blur-md"
+          ? "border-b border-white/10 bg-[#08031d]/92 py-3 shadow-[0_18px_60px_rgba(0,0,0,0.38)] backdrop-blur-2xl"
+          : "bg-[#030014]/72 py-5 backdrop-blur-xl"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        <a href="#" className="text-2xl font-bold tracking-tighter">
-          {PORTFOLIO_DATA.hero.name}
-          <span className="text-purple-500">.</span>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-purple-400/30 to-transparent" />
+
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12">
+        <a href="#" className="group flex items-center gap-2 text-2xl font-black tracking-tighter">
+          <span className="relative">
+            {PORTFOLIO_DATA.hero.name}
+            <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300 group-hover:w-full" />
+          </span>
+          <span className="text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,0.7)]">.</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] md:flex">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors hover:text-gradient"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-slate-300 transition-all duration-300 hover:bg-white/10 hover:text-white hover:shadow-[0_0_22px_rgba(139,92,246,0.16)]"
             >
               {link.name}
             </a>
           ))}
+        </div>
+
+        <div className="hidden md:block">
           <a
             href="#contact"
-            className="rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all hover:bg-white/20"
+            className="group relative inline-flex items-center overflow-hidden rounded-full border border-purple-300/20 bg-white/10 px-6 py-3 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_12px_40px_rgba(0,0,0,0.22)] transition-all duration-300 hover:border-purple-300/40 hover:bg-white/15"
           >
-            Hire Me
+            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-purple-500/0 via-purple-500/25 to-blue-500/0 transition-transform duration-500 group-hover:translate-x-full" />
+            <span className="relative">Hire Me</span>
           </a>
         </div>
 
