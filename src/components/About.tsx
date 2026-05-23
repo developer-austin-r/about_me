@@ -50,8 +50,8 @@ export default function About() {
                 <p className="text-sm text-slate-400">Years Experience</p>
               </div>
               <div className="glass px-6 py-4 rounded-xl border-l-4 border-l-blue-500">
-                <h4 className="text-3xl font-bold text-white mb-1">50+</h4>
-                <p className="text-sm text-slate-400">Projects Completed</p>
+                <h4 className="text-3xl font-bold text-white mb-1">15+</h4>
+                <p className="text-sm text-slate-400">Projects Contributed</p>
               </div>
             </div>
           </motion.div>

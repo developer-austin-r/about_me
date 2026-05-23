@@ -31,7 +31,9 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass py-4 shadow-lg" : "bg-transparent py-6"
+        scrolled
+          ? "border-b border-white/10 bg-[#08031d]/90 py-4 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-2xl"
+          : "bg-[#030014]/60 py-6 backdrop-blur-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -53,7 +55,7 @@ export default function Navbar() {
           ))}
           <a
             href="#contact"
-            className="px-5 py-2 text-sm font-medium bg-white/10 hover:bg-white/20 border border-white/10 rounded-full transition-all"
+            className="rounded-full border border-white/15 bg-white/10 px-5 py-2 text-sm font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-all hover:bg-white/20"
           >
             Hire Me
           </a>
@@ -75,7 +77,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-white/10 mt-4"
+            className="mt-4 border-t border-white/10 bg-[#08031d]/95 backdrop-blur-2xl md:hidden"
           >
             <div className="flex flex-col items-center py-6 space-y-6">
               {navLinks.map((link) => (

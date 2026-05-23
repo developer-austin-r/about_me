@@ -1,16 +1,16 @@
-import { Mail, Phone, Layout, Server, Database, Globe, Shield, Users, BookOpen, Gavel, FileText, CloudCog, ShoppingCart } from "lucide-react";
-import { Github, Linkedin, Twitter, Instagram } from "@/components/icons";
+import { Mail, Phone, Shield, Users, BookOpen, Gavel, FileText, CloudCog, ShoppingCart } from "lucide-react";
+import { Github, Linkedin, Instagram, Medium, Youtube } from "@/components/icons";
 
 export const PORTFOLIO_DATA = {
   hero: {
     name: "Austin",
     role: "Full Stack Developer",
     tagline: "Building premium, scalable, and modern digital experiences.",
-    yearsOfExperience: "5+",
+    yearsOfExperience: "3+",
   },
   about: {
     summary:
-      "I'm a passionate Full Stack Developer with expertise in building highly interactive, scalable, and performance-optimized web applications. I specialize in modern JavaScript frameworks and cloud technologies, always striving to create elegant solutions to complex problems.",
+      "Full Stack Developer with 3+ years of experience building scalable and modern web applications using Laravel, React, Next.js, and cloud technologies. Passionate about solving complex problems, optimizing application performance, and building secure production-ready systems. Quick learner with strong adaptability to new technologies and modern development practices, leveraging AI-powered tools to improve productivity, development efficiency, and continuous learning.",
   },
   skills: {
     frontend: [
@@ -60,6 +60,7 @@ export const PORTFOLIO_DATA = {
       { name: "PHP",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
       { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
       { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
+      { name: "Python",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
     ],
   },
   projects: [
@@ -107,6 +108,7 @@ export const PORTFOLIO_DATA = {
       techStack: ["PHP", "MySQL", "Bootstrap", "HTML", "CSS", "jQuery"],
       icon: Shield,
       color: "from-red-500 to-rose-500",
+      githubLink: "https://github.com/developer-austin-r/Cyber_crime",
     },
     {
       id: 5,
@@ -116,6 +118,7 @@ export const PORTFOLIO_DATA = {
       techStack: ["PHP", "Bootstrap", "MySQL", "HTML", "CSS", "JavaScript"],
       icon: FileText,
       color: "from-emerald-500 to-teal-500",
+      githubLink: "https://github.com/developer-austin-r/PHP-Dynamic-Web-Application",
     },
     {
       id: 7,
@@ -161,42 +164,55 @@ export const PORTFOLIO_DATA = {
   ],
   certifications: [
     {
-      id: 1,
-      title: "AWS Certified Solutions Architect – Associate",
-      issuer: "Amazon Web Services",
-      date: "August 2023",
-      link: "https://aws.amazon.com/certification/",
-      iconColor: "text-orange-400",
-      bgColor: "bg-orange-500/10",
-      borderColor: "border-orange-500/20"
+      id: 4,
+      title: "CSS",
+      issuer: "HackerRank",
+      date: "October 2022",
+      credentialId: "E71FB3DB8289",
+      link: "https://www.hackerrank.com/certificates/e71fb3db8289",
+      iconColor: "text-purple-400",
+      bgColor: "bg-purple-500/10",
+      borderColor: "border-purple-500/20"
     },
     {
-      id: 2,
-      title: "Meta Front-End Developer Professional Certificate",
-      issuer: "Coursera / Meta",
-      date: "March 2022",
-      link: "https://www.coursera.org/professional-certificates/meta-front-end-developer",
-      iconColor: "text-blue-400",
-      bgColor: "bg-blue-500/10",
-      borderColor: "border-blue-500/20"
+      id: 5,
+      title: "Phase 3 - Ethical Hacking Training From Prompt Infotech Educational Scholarship (PIES)",
+      issuer: "Prompt Infotech Coimbatore",
+      date: "April 2022",
+      credentialId: "PITHPIESPIII0077",
+      skills: ["Linux", "Burp Suite"],
+      iconColor: "text-yellow-400",
+      bgColor: "bg-yellow-500/10",
+      borderColor: "border-yellow-500/20"
     },
     {
-      id: 3,
-      title: "MongoDB Node.js Developer Path",
-      issuer: "MongoDB University",
-      date: "January 2021",
-      link: "https://learn.mongodb.com/",
-      iconColor: "text-green-400",
-      bgColor: "bg-green-500/10",
-      borderColor: "border-green-500/20"
+      id: 6,
+      title: "Python for Hacking",
+      issuer: "Prompt Infotech Coimbatore",
+      credentialId: "PITPFE011768",
+      skills: ["Linux", "Ethical Hacker"],
+      iconColor: "text-red-400",
+      bgColor: "bg-red-500/10",
+      borderColor: "border-red-500/20"
+    },
+    {
+      id: 7,
+      title: "Network & Network Security",
+      issuer: "Prompt Infotech Coimbatore",
+      credentialId: "PITNNS001706",
+      skills: ["Linux", "Ethical Hacker"],
+      iconColor: "text-cyan-400",
+      bgColor: "bg-cyan-500/10",
+      borderColor: "border-cyan-500/20"
     }
   ],
   socials: [
-    { name: "GitHub", url: "https://github.com", icon: Github },
-    { name: "LinkedIn", url: "https://linkedin.com", icon: Linkedin },
-    { name: "Twitter", url: "https://twitter.com", icon: Twitter },
-    { name: "Instagram", url: "https://instagram.com", icon: Instagram },
-    { name: "Email", url: "mailto:hello@example.com", icon: Mail },
-    { name: "Phone", url: "tel:+1234567890", icon: Phone }
+    { name: "GitHub", url: "https://github.com/developer-austin-r", icon: Github },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/developer-austin-r/", icon: Linkedin },
+    { name: "Instagram", url: "https://www.instagram.com/techie_austin_/", icon: Instagram },
+    { name: "YouTube", url: "https://www.youtube.com/@TechSurveyTamil", icon: Youtube },
+    { name: "Medium", url: "https://medium.com/@austindev2003", icon: Medium },
+    { name: "Email", url: "mailto:austindev2003@gmail.com", icon: Mail },
+    { name: "Phone", url: "tel:+919629765171", icon: Phone }
   ]
 };

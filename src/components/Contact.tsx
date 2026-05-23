@@ -15,6 +15,20 @@ export default function Contact() {
     setTimeout(() => setCopiedText(null), 2000);
   };
 
+  const getCopyValue = (url: string) => url.replace("mailto:", "").replace("tel:", "");
+
+  const getDisplayValue = (name: string, url: string) => {
+    if (name === "Email") {
+      return "Send email";
+    }
+
+    if (name === "Phone") {
+      return "Call now";
+    }
+
+    return url.replace(/(^\w+:|^)\/\//, "");
+  };
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-900/10 pointer-events-none" />
@@ -42,31 +56,31 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="group relative flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                className="group relative flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4 pr-14 transition-colors hover:bg-white/10"
               >
                 <a
                   href={social.url}
                   target={social.url.startsWith("http") ? "_blank" : undefined}
                   rel={social.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-3 w-full"
+                  className="flex min-w-0 w-full items-center gap-3"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-white border border-white/10 group-hover:border-purple-500/50 transition-colors">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-white transition-colors group-hover:border-purple-500/50">
                     <social.icon size={20} />
                   </div>
-                  <div className="text-left">
+                  <div className="min-w-0 text-left">
                     <p className="text-sm text-slate-400">{social.name}</p>
-                    <p className="font-medium text-slate-200 group-hover:text-purple-400 transition-colors">
-                      {social.url.replace(/(^\w+:|^)\/\//, "").replace("mailto:", "").replace("tel:", "")}
+                    <p className="truncate font-medium text-slate-200 transition-colors group-hover:text-purple-400">
+                      {getDisplayValue(social.name, social.url)}
                     </p>
                   </div>
                 </a>
                 
                 <button
-                  onClick={() => handleCopy(social.url.replace("mailto:", "").replace("tel:", ""))}
-                  className="p-2 text-slate-400 hover:text-white transition-colors absolute right-4 opacity-0 group-hover:opacity-100"
+                  onClick={() => handleCopy(getCopyValue(social.url))}
+                  className="absolute right-4 z-10 rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
                   aria-label={`Copy ${social.name}`}
                 >
-                  {copiedText === social.url.replace("mailto:", "").replace("tel:", "") ? (
+                  {copiedText === getCopyValue(social.url) ? (
                     <CheckCircle2 size={18} className="text-green-400" />
                   ) : (
                     <Copy size={18} />

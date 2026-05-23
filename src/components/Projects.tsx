@@ -6,6 +6,13 @@ import { PORTFOLIO_DATA } from "@/data";
 import { ExternalLink } from "lucide-react";
 import { Github } from "./icons";
 
+type Project = (typeof PORTFOLIO_DATA.projects)[number] & {
+  githubLink?: string;
+  liveLink?: string;
+};
+
+const projects = PORTFOLIO_DATA.projects as Project[];
+
 export default function Projects() {
   return (
     <section id="projects" className="py-24 relative">
@@ -13,7 +20,7 @@ export default function Projects() {
         <SectionHeader title="Featured Projects" subtitle="Some of my recent work" />
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16">
-          {PORTFOLIO_DATA.projects.map((project, idx) => (
+          {projects.map((project, idx) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 40 }}
@@ -38,9 +45,9 @@ export default function Projects() {
                   
                   {/* Action Links */}
                   <div className="flex items-center gap-2 shrink-0">
-                    {(project as any).githubLink && (
+                    {project.githubLink && (
                       <a
-                        href={(project as any).githubLink}
+                        href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
@@ -49,9 +56,9 @@ export default function Projects() {
                         <Github size={18} />
                       </a>
                     )}
-                    {(project as any).liveLink && (
+                    {project.liveLink && (
                       <a
-                        href={(project as any).liveLink}
+                        href={project.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 text-purple-300 transition-colors text-sm font-medium"

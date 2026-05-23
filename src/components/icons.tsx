@@ -26,3 +26,18 @@ export const Instagram = ({ size = 24, className = "" }: { size?: number | strin
     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
   </svg>
 );
+
+export const Youtube = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17z"></path>
+    <path d="m10 15 5-3-5-3z"></path>
+  </svg>
+);
+
+export const Medium = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M13.5 12c0 3.45-2.78 6.25-6.22 6.25S1.05 15.45 1.05 12s2.78-6.25 6.23-6.25S13.5 8.55 13.5 12z"></path>
+    <path d="M20.33 12c0 3.25-1.39 5.88-3.1 5.88s-3.1-2.63-3.1-5.88 1.39-5.88 3.1-5.88 3.1 2.63 3.1 5.88z"></path>
+    <path d="M23.1 12c0 2.91-.49 5.27-1.1 5.27s-1.1-2.36-1.1-5.27.49-5.27 1.1-5.27 1.1 2.36 1.1 5.27z"></path>
+  </svg>
+);

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Download, ArrowRight } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data";
@@ -87,8 +88,15 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-full blur-[60px] opacity-40 animate-pulse"></div>
             
             {/* Avatar container */}
-            <div className="absolute inset-4 glass rounded-full flex items-center justify-center overflow-hidden border-2 border-white/10">
-              <div className="text-slate-500 text-lg">Avatar Placeholder</div>
+            <div className="absolute inset-4 glass rounded-full overflow-hidden border-2 border-white/10 shadow-[0_20px_80px_rgba(59,130,246,0.25)]">
+              <Image
+                src="/austin.png"
+                alt="Austin"
+                fill
+                priority
+                sizes="(min-width: 768px) 418px, 256px"
+                className="object-cover object-top"
+              />
             </div>
             
             {/* Orbiting elements */}
