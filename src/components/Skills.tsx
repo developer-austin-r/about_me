@@ -1,50 +1,94 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "./ui/SectionHeader";
 import { PORTFOLIO_DATA } from "@/data";
 
+const categories = [
+  { key: "frontend",  label: "Frontend" },
+  { key: "backend",   label: "Backend" },
+  { key: "database",  label: "Database" },
+  { key: "devops",    label: "DevOps & Cloud" },
+  { key: "tools",     label: "Tools" },
+  { key: "languages", label: "Languages" },
+] as const;
+
+type CategoryKey = typeof categories[number]["key"];
+
 export default function Skills() {
-  const categories = [
-    { title: "Frontend", items: PORTFOLIO_DATA.skills.frontend, color: "from-blue-500/20 to-blue-500/5", border: "border-blue-500/30" },
-    { title: "Backend", items: PORTFOLIO_DATA.skills.backend, color: "from-green-500/20 to-green-500/5", border: "border-green-500/30" },
-    { title: "Database", items: PORTFOLIO_DATA.skills.database, color: "from-purple-500/20 to-purple-500/5", border: "border-purple-500/30" },
-    { title: "DevOps & Cloud", items: PORTFOLIO_DATA.skills.devops, color: "from-orange-500/20 to-orange-500/5", border: "border-orange-500/30" },
-    { title: "Tools", items: PORTFOLIO_DATA.skills.tools, color: "from-pink-500/20 to-pink-500/5", border: "border-pink-500/30" },
-  ];
+  const [active, setActive] = useState<CategoryKey>("frontend");
+
+  const skills = PORTFOLIO_DATA.skills[active];
 
   return (
     <section id="skills" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-5xl mx-auto px-6 md:px-12">
         <SectionHeader title="Technical Skills" subtitle="Technologies I work with" />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {categories.map((category, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`glass-card rounded-2xl p-6 border ${category.border} relative overflow-hidden group`}
+
+        {/* Tab Bar */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setActive(cat.key)}
+              className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                active === cat.key
+                  ? "text-white"
+                  : "text-slate-400 hover:text-slate-200 glass border border-white/10"
+              }`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-              
-              <h3 className="text-xl font-bold mb-6 relative z-10">{category.title}</h3>
-              
-              <div className="flex flex-wrap gap-3 relative z-10">
-                {category.items.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-slate-300 hover:text-white hover:border-white/30 transition-colors cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+              {active === cat.key && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 shadow-[0_0_20px_rgba(139,92,246,0.5)]"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+              <span className="relative z-10">{cat.label}</span>
+            </button>
           ))}
         </div>
+
+        {/* Skills Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+          >
+            {skills.map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.25, delay: i * 0.04 }}
+                className="group flex flex-col items-center justify-center gap-3 p-4 rounded-2xl glass border border-white/5 hover:border-purple-500/30 hover:bg-white/5 transition-all duration-300 cursor-default hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(139,92,246,0.2)]"
+              >
+                <div className="w-12 h-12 flex items-center justify-center">
+                  {skill.icon ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-10 h-10 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                    />
+                  ) : (
+                    <span className="w-10 h-10 flex items-center justify-center rounded-xl bg-orange-500/20 border border-orange-500/30 text-orange-300 text-xs font-black">
+                      {skill.name.slice(0, 2).toUpperCase()}
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs text-slate-400 group-hover:text-slate-200 text-center leading-tight transition-colors font-medium">
+                  {skill.name}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
