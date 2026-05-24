@@ -25,6 +25,24 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -72,8 +90,12 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-slate-300 hover:text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          type="button"
+          className="relative z-50 rounded-full border border-white/10 bg-white/5 p-2 text-slate-300 transition-colors hover:bg-white/10 hover:text-white md:hidden"
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMobileMenuOpen((open) => !open)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -83,23 +105,51 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="mt-4 border-t border-white/10 bg-[#08031d]/95 backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-40 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <div className="flex flex-col items-center py-6 space-y-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-slate-300 hover:text-white"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
+            <button
+              type="button"
+              aria-label="Close navigation menu"
+              className="absolute inset-0 cursor-default bg-black/55 backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            <motion.aside
+              id="mobile-navigation"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 34 }}
+              className="absolute right-0 top-0 flex h-dvh w-72 max-w-[82vw] flex-col border-l border-white/10 bg-[#08031d]/98 px-6 pb-8 pt-24 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-2xl"
+            >
+              <div className="mb-8 text-sm font-semibold uppercase tracking-[0.24em] text-purple-300/80">
+                Menu
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3 text-base font-semibold text-slate-200 transition-colors hover:border-purple-300/30 hover:bg-white/10 hover:text-white"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-auto inline-flex items-center justify-center rounded-full border border-purple-300/30 bg-white/10 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/15"
+              >
+                Hire Me
+              </a>
+            </motion.aside>
           </motion.div>
         )}
       </AnimatePresence>
