@@ -142,7 +142,7 @@ export const PORTFOLIO_DATA = {
     {
       id: 2,
       role: "PHP Laravel Developer",
-      company: "Cloverworld Technologies",
+      company: "Clovion Tech Solutions",
       duration: "Dec 2022 – Feb 2024",
       description: "Worked as a Full Stack Developer on multiple web applications using Core PHP, Laravel, MySQL, JavaScript, and modern frontend technologies. Contributed to feature development, production issue handling, bug fixing, backend API development, and application optimization across various client projects. Took ownership of assigned modules and collaborated with the team to deliver scalable, reliable, and production-ready solutions."
     }
