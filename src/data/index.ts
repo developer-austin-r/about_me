@@ -136,7 +136,7 @@ export const PORTFOLIO_DATA = {
       id: 1,
       role: "PHP Laravel Developer",
       company: "App Innovation Technologies",
-      duration: "Aug 2025 – Present",
+      duration: "Aug 2024 – Present",
       description: "Working on multiple SaaS, CRM, and enterprise-level web applications using Laravel, React, Vue.js, and modern development technologies. Contributing to backend API development, database design, third-party API integrations, authentication systems, queue jobs, and performance optimization. Involved in complex problem-solving, feature ownership, deployment support, application security improvements, and scalable architecture implementation across various client projects."
     },
     {
